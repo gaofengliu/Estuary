@@ -9,11 +9,11 @@ plt.rcParams['font.sans-serif']=['SimHei']
 from matplotlib.pylab import rcParams
 rcParams['figure.figsize'] = 10, 5
 
-#font = {'family' : 'normal',
-#        'weight' : 'bold',
-#        'size'   : 8}
+font = {'family' : 'normal',
+        'weight' : 'bold',
+        'size'   : 8}
 
-#matplotlib.rc('font', **font)
+matplotlib.rc('font', **font)
 
 matplotlib.rcParams.update({'font.size': 10})
 
