@@ -1,0 +1,74 @@
+ALL PARAMETERS CONTROLLING FOR DRAWING PICTURES ARE LISTED AS FOLLOWING:
+---------- INPUT AND OUTPUT DIRECTORIES ----------------------
+IN_DIRE  	./case2011/Ecomsi3dsed/output
+OUT_DIRE 	./Draw_pic
+---------- TIME SETTINGS -------------------------------------
+IYEAR		2011   	! Initial date: YEAR
+IMONTH	7		! Initial date: MONTH
+IDAY0		1		! Initial date: DAY
+---------- GRID IMFORMATION ----------------------------------
+IM		337	
+JM		225
+KB		11
+---------- TIMESERIES DRAWING PARAMETERS ---------------------
+LOG_TSR_EL	F		! Trun on/off drawing elevation timeseriers of computation
+LOG_OBS_EL	F		! Trun on/off drawing elevation timeseriers of observation
+LOG_TSR_VEL	F		! Trun on/off drawing velocity timeseriers of computation
+LOG_OBS_VEL	F		! Trun on/off drawing velocity timeseriers of observation
+TSR_LAYER_VEL	1;3;5		! Setting velocity layer for drawing, semicolon for discontinuous,colon for continuous
+LOG_TSR_S	F		! Trun on/off drawing salinity timeseriers of computation
+LOG_OBS_S	F		! Trun on/off drawing salinity timeseriers of observation
+TSR_LAYER_S	1:5		! Setting salinity layer for drawing, semicolon for discontinuous,colon for continuous      
+LOG_TSR_SEC	F		! Trun on/off drawing section timeseriers of computation
+TSR_BEG		0		! Unit: day, the begin time for timeseriers drawing
+TSR_END		2		! Unit: day, the end time for timeseriers drawing
+TSR_LAG		51		! Unit: day, draw timeseries lag time
+TSR_SEC_BEG	0		! Unit: day, the begin time for section timeseriers drawing
+TSR_SEC_END	15		! Unit: day, the end time for section timeseriers drawing
+TSR_SEC_LAG	30		! Unit: day, draw section timeseries lag time
+---------- FIELD DISTRIBUTION DRAWING PARAMETERS ----------------
+LOG_FIELD        F              ! Trun on/off output site and section position drawing
+N_FPT		3600		! Unit: second, interval for field distribution output, according to run file setting
+DMIN		     0.2		! Unit: m, Critical depth for wet/dry judgement
+LOG_OPT		F		! Trun on/off output site and section position drawing
+LOG_EPT		F		! Trun on/off elevation field output drawing
+EPT_TIME	      26	        ! Unit: hour, elevation field drawing time setting 
+LOG_VPT_UV	F		! Trun on/off velocity field output drawing (UV VECTOR)
+LOG_VPT_SD	F		! Trun on/off velocity field output drawing (SPEED CONTOUR)
+VPT_TIME   	96:100		! Unit: hour, velocity field drawing time setting 
+VPT_LAYER	5		! Setting velocity field layer for drawing
+VPT_INTERVAL	3		! Setting the interval of arrow drawing on the picture
+VPT_SCALE	0.2		! Unit: m/s, setting the scale of legend
+LOG_SPT		F		! Trun on/off salinity field output drawing
+SPT_TIME	    96:100 	! Unit: hour, salinity field drawing time setting 
+SPT_LAYER	1		! Setting salinity field layer for drawing
+LOG_RSPT	       F		! Trun on/off residual salinity field output drawing	
+RSPT_LAYER	1		! Setting residual salinity field layer for drawing
+LOG_SED		F		! Trun on/off sediment field output drawing
+SED_TIME	      96:96		! Unit: hour, sediment field drawing time setting 
+SED_LAYER	10		! Setting sediment field layer for drawing
+LOG_FIELD_RCUR    T	        ! Trun on/off residual current field output drawing	
+RCUR_LAYER	 1;10	       ! Setting residual current field layer for drawing
+LOG_FIELD_RSED    T	        ! Trun on/off residual sediment field output drawing	
+RSED_LAYER	1;10	       ! Setting residual sediment field layer for drawing
+RS_MIN_DEP	1		! Unit:m, the minimum water depth for drawing
+LOG_TAU		F		! Trun on/off the bottom shear stress field output drawing
+TAU_TIME	  24:29		! Unit: hour, bottom shear stress field drawing time setting 
+FPT_COORDINATE  XY 	! 'BL' or 'XY', select field distribution drawing coordinate
+FPT_XMIN	 380.8	        ! Setting coordinate xmin, according to FPT_COORDINATE  FPT_XMIN	 365	FPT_XMIN	121.586527874	
+FPT_XMAX   439.8	        ! Setting coordinate xmax, according to FPT_COORDINATE  FPT_XMAX   439	FPT_XMAX  122.358398136		
+FPT_YMIN	 3437.6	        ! Setting coordinate ymin, according to FPT_COORDINATE  FPT_YMIN	3432	FPT_YMIN	31.000985219 	
+FPT_YMAX	 3472.8	        ! Setting coordinate ymax, according to FPT_COORDINATE  FPT_YMAX	3479	FPT_YMAX	31.430999342	
+FPT_COLOR_TYPE	C		! 'G' for GRAY or 'C' for COLOR, setting picture color type
+---------- SECTION DISTRIBUTION DRAWING PARAMETERS ----------------
+LOG_SEC_S	F		! Trun on/off salinity section drawing
+SEC_S_TIME	26		! Unit: hour, salinity section drawing time setting
+LOG_SEC_RS	F		! Trun on/off residual salinity section drawing
+LOG_SEC_SED	F		! Trun on/off sediment section drawing
+SEC_SED_TIME	26		! Unit: hour, sediment section drawing time setting
+LOG_SEC_RSED_FLUX	 F		! Trun on/off residual sediment section drawing
+SEC_NUM	1		! Number of sections for drawing
+SEC_CONTROL_POINTS	3	! Unit: km, salinity section possition setting, according to SEC_NUM, If SEC_P_TYPE is set to SPECIFY
+391.525  3461.400; 413.607  3456.941; 433.748  3442.528
+SEC_RESOLUTION	1.0		! Unit:km, the resolution for section drawing 
+SEC_MAX_HIGHT	-4		! Unit:m, the maximun hight of the section 
