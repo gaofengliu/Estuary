@@ -7,7 +7,7 @@ import matplotlib
 import matplotlib.pylab as plt
 from matplotlib.pylab import rcParams
 
-rcParams['figure.figsize']= 10,5
+rcParams['figure.figsize']= 10,4
 font = {'family': 'normal','weight':'bold','size':10}
 
 plt.rcParams['font.sans-serif']=['SimHei']
@@ -25,11 +25,14 @@ def draw_cjk_map():
 
     fig,ax=plt.subplots()    
     
-    ax.plot(yjgcoast[:,0],yjgcoast[:,1]) 
-    ax.plot(hbykmt[:,0],hbykmt[:,1])
-    ax.plot(hjmt[:,0],hjmt[:,1]) 
-    ax.plot(lycmt[:,0],lycmt[:,1])
-    ax.plot(shmt[:,0],shmt[:,1]) 
+    ax.plot(yjgcoast[:,0],yjgcoast[:,1],color='k',linewidth='2') 
+    ax.plot(hbykmt[:,0],hbykmt[:,1],color='k')
+    ax.plot(hjmt[:,0],hjmt[:,1],color='k') 
+    ax.plot(lycmt[:,0],lycmt[:,1],color='k')
+    ax.plot(shmt[:,0],shmt[:,1],color='k')
+    
+    ax.get_yaxis().get_major_formatter().set_useOffset(False)
+
     
 
 
