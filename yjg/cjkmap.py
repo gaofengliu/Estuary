@@ -33,18 +33,10 @@ def draw_cjk_map():
     
     ax.get_yaxis().get_major_formatter().set_useOffset(False)
 
-    
-
-
-#    startline = 0
-#    for ii in range(startline,startline+175):
-#        data[ii] = coastlines[ii].split()
-
-
-
-
-
-
+plt.show()
+figname = 'yjgsites.png'
+plt.savefig(figname, dpi=300, bbox_inches='tight')
+plt.close()
 
 if __name__ == '__main__':
     draw_cjk_map()
