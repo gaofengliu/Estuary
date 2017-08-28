@@ -13,7 +13,7 @@ import scipy.io as sio
 plt.rcParams['font.sans-serif']=['SimHei']
 from matplotlib.pylab import rcParams
 
-rcParams['figure.figsize'] = 10, 5
+rcParams['figure.figsize'] = 10, 8
 
 def draw_ts():
     years = mdates.YearLocator()  # every year
@@ -44,7 +44,7 @@ def draw_ts():
 
     pi = 3.1415926
 
-    theta = 29.341 / 360 * pi
+    theta = 29.341  # 偏转角度
 
     alpha2=(ts_dir2 - theta) / 180 * pi
     alpha3=(ts_dir3 - theta) / 180 * pi
@@ -56,12 +56,12 @@ def draw_ts():
     
     ts_vel3_ue = ts_vel3 * alpha3.map(lambda x:mth.cos(x))
     ts_vel3_un = ts_vel3 * alpha3.map(lambda x:mth.sin(x))
-    
-    ts_vel4_ue = ts_vel2 * alpha4.map(lambda x:mth.cos(x))
-    ts_vel4_un = ts_vel2 * alpha4.map(lambda x:mth.sin(x))
-    
-    ts_vel5_ue = ts_vel2 * alpha5.map(lambda x:mth.cos(x))
-    ts_vel5_un = ts_vel2 * alpha5.map(lambda x:mth.sin(x))
+
+    ts_vel4_ue = ts_vel4 * alpha4.map(lambda x: mth.cos(x))
+    ts_vel4_un = ts_vel4 * alpha4.map(lambda x: mth.sin(x))
+
+    ts_vel5_ue = ts_vel5 * alpha5.map(lambda x: mth.cos(x))
+    ts_vel5_un = ts_vel5 * alpha5.map(lambda x: mth.sin(x))
     
     ts_flux2_ue=ts_vel2_ue*ts_ssc_25cm*0.1
     ts_flux2_un=ts_vel2_un*ts_ssc_25cm*0.1
@@ -79,21 +79,19 @@ def draw_ts():
     
     ts_allflux_ue=ts_flux2_ue+ts_flux3_ue+ts_flux4_ue+ts_flux5_ue
     ts_allflux_un=ts_flux2_un+ts_flux3_un+ts_flux4_un+ts_flux5_un
-    
-    data['flux2ue']=ts_flux2_ue
-    data['flux2un']=ts_flux2_un
-    
-    data['flux3ue']=ts_flux3_ue
-    data['flux3un']=ts_flux3_un
-    
-    data['flux4ue']=ts_flux4_ue
+
+    data['flux2ue'] = ts_flux2_ue
+    data['flux3ue'] = ts_flux3_ue
+    data['flux4ue'] = ts_flux4_ue
+    data['flux5ue'] = ts_flux5_ue
+
+    data['flux2un'] = ts_flux2_un
+    data['flux3un'] = ts_flux3_un
     data['flux4un']=ts_flux4_un
-    
-    data['flux5ue']=ts_flux5_ue
     data['flux5un']=ts_flux5_un    
     
     data['fluxue']=ts_allflux_ue
-    data['fluxun']=ts_allflux_un         
+    data['fluxun'] = ts_allflux_un
                    
     writer = pd.ExcelWriter('output.xlsx')    
     data.to_excel(writer,'Sheet1')    
@@ -105,43 +103,40 @@ def draw_ts():
     
     myfont=matplotlib.font_manager.FontProperties(family='serif',size='6')  #‘serif’, ‘sans-serif’, ‘cursive’, ‘fantasy’, or ‘monospace’.
 
-    plt.figure(figsize=(8,10))
+    # plt.figure(figsize=(8,10))
     fig, ax = plt.subplots(nrows=6, ncols=1, sharex=True)
-
     majorFormatter = FormatStrFormatter('%.2f')  # set the format of the ticker
 
-    ax[0].plot(ts_0, 'o-', markersize=2, label='Surface')
-    ax[0].legend(loc='upper right', fontsize='2',prop=myfont)
-    # ax1.tick_params(direction='in', length=6, width=2, colors='k',labelleft='on')
-    ax[0].set_ylabel('$SSC(kg/m^{{{3}}})$', fontdict=font)    
+    ax[0].plot(ts_wl, label='Depth')
+    ax[0].legend(loc='upper right', fontsize='6', prop=myfont)
+    ax[0].set_ylabel('Depth(m)', fontdict=font)
 
-    ax[1].plot(ts_ssc_50cm, label='50cmab')
-    ax[1].legend(loc='upper right', fontsize='6',prop=myfont)
+    ax[1].plot(ts_0, 'o-', markersize=2, label='Surface')
+    ax[1].legend(loc='upper right', fontsize='2', prop=myfont)
     ax[1].set_ylabel('$SSC(kg/m^{{{3}}})$', fontdict=font)
 
-    ax[2].plot(ts_ssc_25cm, label='25cmab')
+    ax[2].plot(ts_ssc_50cm, label='50cmab')
     ax[2].legend(loc='upper right', fontsize='6',prop=myfont)
     ax[2].set_ylabel('$SSC(kg/m^{{{3}}})$', fontdict=font)
-    ax[2].yaxis.set_major_formatter(majorFormatter)
-    
-    ax[3].plot(ts_allflux_ue, label='flux_along')
+
+    ax[3].plot(ts_ssc_25cm, label='25cmab')
     ax[3].legend(loc='upper right', fontsize='6',prop=myfont)
-    ax[3].set_ylabel('$Flux(kg/ms)$', fontdict=font)
+    ax[3].set_ylabel('$SSC(kg/m^{{{3}}})$', fontdict=font)
     ax[3].yaxis.set_major_formatter(majorFormatter)
-    ax[3].axhline(y=0, color='k',linestyle='--',linewidth='0.5')
-    
-    ax[4].plot(ts_allflux_un, label='flux_across')
+
+    ax[4].plot(ts_allflux_ue, label='along_flux')
     ax[4].legend(loc='upper right', fontsize='6',prop=myfont)
-    ax[4].set_ylabel('$Fulx(kg/ms)$', fontdict=font)
+    ax[4].set_ylabel('$Flux(kg/ms)$', fontdict=font)
     ax[4].yaxis.set_major_formatter(majorFormatter)
     ax[4].axhline(y=0, color='k',linestyle='--',linewidth='0.5')
-    
 
-    ax[5].plot(ts_wl, label='Depth')
+    ax[5].plot(ts_allflux_un, label='across_flux')
     ax[5].legend(loc='upper right', fontsize='6',prop=myfont)
-    ax[5].set_ylabel('Depth(m)', fontdict=font)
+    ax[5].set_ylabel('$Fulx(kg/ms)$', fontdict=font)
     ax[5].yaxis.set_major_formatter(majorFormatter)
+    ax[5].axhline(y=0, color='k', linestyle='--', linewidth='0.5')
 
+    ax[5].yaxis.set_major_formatter(majorFormatter)
     ax[5].xaxis.set_major_locator(days)
     ax[5].xaxis.set_major_formatter(yearsFmt)
 

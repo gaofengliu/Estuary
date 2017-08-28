@@ -34,7 +34,7 @@ ts_ssc_50cm = data['SSC_50cm']
 ts_ssc_25cm = data['SSC_25cm']
 
 pi = 3.1415926
-theta = 29.341 / 360 * pi
+theta = 29.341 
 alpha=(ts_dir - theta) / 180 * pi
 alpha.columns =[colname for colname in ts_vel.columns]
 
@@ -54,9 +54,14 @@ ts_ssc.loc[:,velcol[3]]=ts_ssc_50cm
 ts_flux_ue=ts_vel_ue*ts_ssc*0.1
 ts_flux_un=ts_vel_un*ts_ssc*0.1
 
+ts_flux_ue.columns = ['flux2ue', 'flux3ue', 'flux4ue', 'flux5ue']
+ts_flux_un.columns = ['flux2un', 'flux3un', 'flux4un', 'flux5un']
+
 writer = pd.ExcelWriter('output2.xlsx')    
-ts_flux_ue.to_excel(writer,'Sheet1')   
-ts_flux_un.to_excel(writer,'Sheet2')     
+ts_flux_ue.to_excel(writer,'Sheet1')
+ts_flux_un.to_excel(writer, 'Sheet2')
+
+# ts_flux= pd.concat(ts_flux_ue,ts_flux_un)
 writer.save()
 
 
